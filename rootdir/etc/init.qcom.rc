@@ -967,3 +967,8 @@ on property:dev.bootcomplete=1
     stop boot_lc
     stop bootlccrash
     stop bootlckernel
+
+
+
+    # NFC
+    chown nfc nfc /dev/pn54x
