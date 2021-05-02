@@ -298,7 +298,14 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-    libstagefrighthw
+    libstagefrighthw \
+    libstagefrighthw \
+    libc2dcolorconvert \
+    libOmxSwVdec \
+    libOmxSwVencMpeg4 \
+    libcodec2_vndk.vendor \
+    libcodec2_hidl@1.0.vendor \
+    libmm-omxcore
 
 # Perf
 PRODUCT_PACKAGES += \
