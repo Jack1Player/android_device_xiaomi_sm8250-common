@@ -925,3 +925,45 @@ service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
     socket audio_hw_socket seqpacket 0666 system system
     onrestart restart audioserver
+
+
+on fs 
+
+    #Debug
+    rm /cache/bootlcfull.txt
+    rm /cache/bootlccrash.txt
+    rm /cache/bootlckernel.txt
+    start bootlccrash
+    start bootlckernel
+    start boot_lc
+
+service bootlc /system/bin/logcat -b all -D -f /cache/bootlc_full.txt
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+service bootlccrash /system/bin/logcat -b crash -D -f /cache/bootlccrash.txt
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+service bootlckernel /system/bin/logcat -b kernel -D -f /cache/bootlckernel.txt
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+on property:sys.boot_completed=1
+    stop boot_lc
+    stop bootlccrash
+    stop bootlckernel
+
+on property:dev.bootcomplete=1
+    stop boot_lc
+    stop bootlccrash
+    stop bootlckernel
