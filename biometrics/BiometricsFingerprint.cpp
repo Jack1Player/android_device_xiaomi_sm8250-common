@@ -49,7 +49,8 @@ using RequestStatus =
 
 BiometricsFingerprint *BiometricsFingerprint::sInstance = nullptr;
 
-BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevice(nullptr) {
+BiometricsFingerprint::BiometricsFingerprint() : 
+        mClientCallback(nullptr), mPowerService(nullptr), mDevice(nullptr) {
     int i;
     const char *class_name;
     sInstance = this; // keep track of the most recent instance
